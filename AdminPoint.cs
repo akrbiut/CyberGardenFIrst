@@ -16,8 +16,11 @@ namespace CyberGardenFIrst
         public bool Status { get; set; }
         public bool CheckLog(AdminPoint AP)
         {
-
-            Console.WriteLine($"T: {DateTime.Now} - connecting");
+            if (AP.Name == Properties.Settings.Default.AdminLogin && AP.Password == Properties.Settings.Default.AdminPassword)
+            {
+                Console.WriteLine($"T: {DateTime.Now} - connecting");
+                return true;
+            }
 
             return true;
 

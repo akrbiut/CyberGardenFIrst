@@ -34,7 +34,7 @@ namespace CyberGardenFIrst
             {
                 Console.WriteLine("Connecting!");
                 conn.Open();
-                Console.WriteLine("Connection Successful!");
+                Console.WriteLine($"{DateTime.Now} - Connection Successful!");
             }
             catch (Exception e)
             {

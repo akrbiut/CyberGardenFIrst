@@ -25,5 +25,11 @@
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)">UQQeoCSK1290</Value>
     </Setting>
+    <Setting Name="AdminLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="AdminPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ilikebeans</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

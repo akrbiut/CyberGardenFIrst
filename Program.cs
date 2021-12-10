@@ -14,18 +14,22 @@ namespace CyberGardenFIrst
             AdminPoint AP = new AdminPoint();
             Console.Write("WhoOoOo are you? : ");
             AP.Name = Console.ReadLine();
-            Console.WriteLine("Tell me our password, little boy : ");
+            Console.Write("Tell me our password, little boy : ");
             AP.Password = Console.ReadLine();
+            //Синхронизация с БД
             if (AP.CheckLog(AP) == true)
             {
                 AP.LoginTime = DateTime.Now;
                 AP.Role = "Admin";
-                Console.WriteLine($"Welcome, {AP.Role}: {AP.Name}. Time of Log: {AP.LoginTime}");
-                Console.WriteLine($"Trying connection: {DateTime.Now}");
-                SQLConnection SQLcon = new SQLConnection();
-                SQLcon = SQLcon.MakeSomeSettings();
-                SQLcon.ConnectToBD();
-                Console.ReadLine();
+                if (AP.CheckLog(AP))
+                {
+                    Console.WriteLine($"Welcome, {AP.Role}: {AP.Name}. Time of Log: {AP.LoginTime}");
+                    Console.WriteLine($"Trying connection: {DateTime.Now}");
+                    SQLConnection SQLcon = new SQLConnection();
+                    SQLcon = SQLcon.MakeSomeSettings();
+                    SQLcon.ConnectToBD();
+                    Console.ReadLine();
+                }
             }
             //Асинхронный запуск процесса
             
