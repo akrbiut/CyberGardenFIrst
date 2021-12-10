@@ -10,6 +10,5 @@ namespace CyberGardenFIrst
     {
         public string ID { get; set; }
         public string CheckID { get; set; }
-
     }
 }

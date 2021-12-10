@@ -30,15 +30,37 @@ namespace CyberGardenFIrst
         {
             string connLine = $"Data Source={DataSource};Initial Catalog={InitialCatalog};Persist Security Info={PersistSecurityInfo};User ID={UserID};Password={Password}";
             SqlConnection conn = new SqlConnection(connLine);
-            try
+            QSQL(conn);
+            //try
+            //{
+            //    Console.WriteLine("Connecting!");
+            //    conn.Open();
+            //    Console.WriteLine($"{DateTime.Now} - Connection Successful!");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Error: " + e.Message);
+            //}
+        }
+
+        public void QSQL(SqlConnection conn)
+        {
+            using (conn)
             {
-                Console.WriteLine("Connecting!");
-                conn.Open();
-                Console.WriteLine($"{DateTime.Now} - Connection Successful!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e.Message);
+                string sql = "Select ProductName, count (UserId) as 'Counter' from dbo.HistoryDataSet where UserId = '679' group by ProductName";
+                using (SqlCommand comm = new SqlCommand(sql, conn))
+                {
+                    Console.WriteLine("Connecting!");
+                    conn.Open();
+                    Console.WriteLine($"{DateTime.Now} - Connection Successful!");
+                    using (SqlDataReader read = comm.ExecuteReader())
+                    {
+                        while (read.Read())
+                        {
+                            Console.WriteLine("{0}, {1}", read.GetString(0), read.GetValue(1));
+                        }
+                    }
+                }
             }
         }
     }

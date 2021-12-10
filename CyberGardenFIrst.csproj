@@ -118,6 +118,7 @@
       <DependentUpon>CGDataSet.xsd</DependentUpon>
     </None>
     <None Include="HistoryDataSet.csv" />
+    <None Include="MLModel.mbconfig" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

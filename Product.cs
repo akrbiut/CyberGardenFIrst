@@ -8,6 +8,7 @@ namespace CyberGardenFIrst
 {
     public class Product
     {
+        public string CheckID { get; set; }
         public string Name { get; set; }
         public string Cost { get; set; }
         public string MerchantName { get; set; }
