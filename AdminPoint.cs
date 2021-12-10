@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CyberGardenFIrst
 {
@@ -12,9 +13,14 @@ namespace CyberGardenFIrst
         public string Role { get; set; }
         public string Password { get; set; }
         public DateTime LoginTime { get; set; }
+        public bool Status { get; set; }
         public bool CheckLog(AdminPoint AP)
         {
-            AP
+
+            Console.WriteLine($"T: {DateTime.Now} - connecting");
+
+            return true;
+
         }
     }
 }

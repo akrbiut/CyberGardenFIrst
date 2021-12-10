@@ -12,21 +12,24 @@ namespace CyberGardenFIrst
         {
             //Авторизация в панель
             AdminPoint AP = new AdminPoint();
-            Console.WriteLine("WhoOoOo are you? : ");
+            Console.Write("WhoOoOo are you? : ");
             AP.Name = Console.ReadLine();
             Console.WriteLine("Tell me our password, little boy : ");
             AP.Password = Console.ReadLine();
             if (AP.CheckLog(AP) == true)
             {
+                AP.LoginTime = DateTime.Now;
+                AP.Role = "Admin";
                 Console.WriteLine($"Welcome, {AP.Role}: {AP.Name}. Time of Log: {AP.LoginTime}");
+                Console.WriteLine($"Trying connection: {DateTime.Now}");
+
             }
             //Асинхронный запуск процесса
-
+            
             //Прогрузка датасета
 
             //Генерация ключей
 
-            //
         }
 
 
