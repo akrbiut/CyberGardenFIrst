@@ -22,7 +22,10 @@ namespace CyberGardenFIrst
                 AP.Role = "Admin";
                 Console.WriteLine($"Welcome, {AP.Role}: {AP.Name}. Time of Log: {AP.LoginTime}");
                 Console.WriteLine($"Trying connection: {DateTime.Now}");
-
+                SQLConnection SQLcon = new SQLConnection();
+                SQLcon = SQLcon.MakeSomeSettings();
+                SQLcon.ConnectToBD();
+                Console.ReadLine();
             }
             //Асинхронный запуск процесса
             
