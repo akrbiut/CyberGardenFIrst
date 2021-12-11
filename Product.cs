@@ -12,5 +12,7 @@ namespace CyberGardenFIrst
         public string Name { get; set; }
         public string Cost { get; set; }
         public string MerchantName { get; set; }
+        public int Сounter { get; set; }
+        public bool Favorite { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using System.Net;
 
 namespace CyberGardenFIrst
 {
@@ -36,24 +37,30 @@ namespace CyberGardenFIrst
 
         public void QSQL(SqlConnection conn)
         {
+            int point = 0;
             string res = "";
             using (conn)
             {
-                string sql = "Select ProductName, count (UserId) as 'Counter' from dbo.HistoryDataSet where UserId = '679' group by ProductName";
+                string sql = "Select ProductName, Points, count (UserId) as 'Counter' from dbo.HistoryDataSet where UserId = '2382' group by ProductName, Points";
                 using (SqlCommand comm = new SqlCommand(sql, conn))
                 {
                     Console.WriteLine("Connecting!");
                     conn.Open();
                     Console.WriteLine($"{DateTime.Now} - Connection Successful!");
+                    
                     using (SqlDataReader read = comm.ExecuteReader())
                     {
+                        Console.WriteLine("==========Отладочная информация==========");
                         while (read.Read())
                         {
-                            res += read.GetString(0) + read.GetValue(1);
+                            //point = (int)read.GetValue(2);
+                            Console.WriteLine(point);
+                            res += read.GetString(0) + " " + read.GetValue(1) + " " + read.GetValue(2) + '\n';
                         }
                     }
                 }
             }
+            Console.WriteLine(res);
         }
     }
 }

@@ -101,6 +101,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Rate.cs" />
     <Compile Include="SQLConnection.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

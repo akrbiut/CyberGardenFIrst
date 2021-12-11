@@ -1,6 +1,10 @@
 ﻿{
   "TrainingTime": 0,
   "Scenario": "Recommendation",
+  "DataSource": {
+    "Type": "SQL",
+    "Version": 1
+  },
   "Environment": {
     "Type": "LocalCPU",
     "Version": 1
