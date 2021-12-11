@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace CyberGardenFIrst
 {
@@ -31,20 +32,11 @@ namespace CyberGardenFIrst
             string connLine = $"Data Source={DataSource};Initial Catalog={InitialCatalog};Persist Security Info={PersistSecurityInfo};User ID={UserID};Password={Password}";
             SqlConnection conn = new SqlConnection(connLine);
             QSQL(conn);
-            //try
-            //{
-            //    Console.WriteLine("Connecting!");
-            //    conn.Open();
-            //    Console.WriteLine($"{DateTime.Now} - Connection Successful!");
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Error: " + e.Message);
-            //}
         }
 
         public void QSQL(SqlConnection conn)
         {
+            string res = "";
             using (conn)
             {
                 string sql = "Select ProductName, count (UserId) as 'Counter' from dbo.HistoryDataSet where UserId = '679' group by ProductName";
@@ -57,7 +49,7 @@ namespace CyberGardenFIrst
                     {
                         while (read.Read())
                         {
-                            Console.WriteLine("{0}, {1}", read.GetString(0), read.GetValue(1));
+                            res += read.GetString(0) + read.GetValue(1);
                         }
                     }
                 }
