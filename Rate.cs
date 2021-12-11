@@ -12,8 +12,6 @@ namespace CyberGardenFIrst
         public int Rating { get; set; }
         public string Description { get; set; }
         public string PopularProduct { get; set; }
-        public string Adress { get; set; }
-        public IDictionary<string, string> RatingsUp { get; set; }
 
     }
 }

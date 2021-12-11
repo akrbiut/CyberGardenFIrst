@@ -19,6 +19,7 @@ namespace CyberGardenFIrst
         public string PersistSecurityInfo { get; set; }
         public string UserID { get; set; }
         public string Password { get; set; }
+        public Dictionary<string, string> JSONParam { get; set; }
         public SQLConnection MakeSomeSettings()
         {
             DataSource = Properties.Settings.Default.DataSource;
@@ -28,20 +29,19 @@ namespace CyberGardenFIrst
             Password = Properties.Settings.Default.Password;
             return this;
         }
-        public void ConnectToBD()
+        public void ConnectToBD(string id)
         {
             string connLine = $"Data Source={DataSource};Initial Catalog={InitialCatalog};Persist Security Info={PersistSecurityInfo};User ID={UserID};Password={Password}";
             SqlConnection conn = new SqlConnection(connLine);
-            QSQL(conn);
+            QSQL(conn, id);
         }
 
-        public void QSQL(SqlConnection conn)
+        public void QSQL(SqlConnection conn, string id)
         {
-            int point = 0;
             string res = "";
             using (conn)
             {
-                string sql = "Select ProductName, Points, count (UserId) as 'Counter' from dbo.HistoryDataSet where UserId = '2382' group by ProductName, Points";
+                string sql = $"Select ProductName, Points, count (UserId) as 'Counter' from dbo.HistoryDataSet where UserId = '{id}' group by ProductName, Points";
                 using (SqlCommand comm = new SqlCommand(sql, conn))
                 {
                     Console.WriteLine("Connecting!");
@@ -53,9 +53,17 @@ namespace CyberGardenFIrst
                         Console.WriteLine("==========Отладочная информация==========");
                         while (read.Read())
                         {
-                            //point = (int)read.GetValue(2);
-                            Console.WriteLine(point);
-                            res += read.GetString(0) + " " + read.GetValue(1) + " " + read.GetValue(2) + '\n';
+                            JSONParam.Add("ProductName", read.GetString(0));
+                            if ((int)read.GetValue(2) >= 5)
+                            {
+                                JSONParam.Add("Points", 5.ToString());
+                            }
+                            else if ((int)read.GetValue(2) < 5)
+                            {
+                                Random rand = new Random();
+                                JSONParam.Add("Points", rand.Next(1, 4).ToString());
+                            }
+                            res += read.GetString(0) + " " + read.GetValue(1) + " " + read.GetValue(2) + "\n";
                         }
                     }
                 }
