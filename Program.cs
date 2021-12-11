@@ -31,13 +31,23 @@ namespace CyberGardenFIrst
             //Прогрузка HttpListener
             Route.Add("/", (req, res, props) =>
             {
-                res.AsText("Osmire - команда, дуэт, два (two).");
+                res.AsText("Osmire (two).");
             });
             Route.Add("/users/{id}", (req, res, props) =>
             {
-                SQLcon.ConnectToBD(props["id"]);
                 res.AsText($"Client ID: {props["id"]}");
             });
+            Route.Add("/{id}", (req, res, props) =>
+            {
+                SQLcon.ConnectToBD(props["id"], 1);
+                res.AsText($"Client ID: {props["id"]}");
+            });
+            Route.Add("/topmerchant", (req, res, props) =>
+            {
+                SQLcon.ConnectToBD(0.ToString(), 2);
+                res.AsText($"Client ID: {props["id"]}");
+            });
+
             HttpServer.ListenAsync(80, CancellationToken.None, Route.OnHttpRequestAsync).Wait();
             //Генерация ключей
 

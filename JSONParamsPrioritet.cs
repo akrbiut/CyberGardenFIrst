@@ -10,5 +10,7 @@ namespace CyberGardenFIrst
     {
         public string ProductName { get; set; }
         public string UserId { get; set; }
+        public string Prior { get; set; }
+        public string Counter { get; set; }
     }
 }
