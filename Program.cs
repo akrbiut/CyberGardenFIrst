@@ -39,47 +39,15 @@ namespace CyberGardenFIrst
             });
             Route.Add("/{id}", (req, res, props) =>
             {
-                SQLcon.ConnectToBD(props["id"], 1);
-                res.AsText($"Client ID: {props["id"]}");
+                res.AsText(SQLcon.FindBigSales(props["id"]));
             });
             Route.Add("/topmerchant", (req, res, props) =>
             {
-                SQLcon.ConnectToBD(0.ToString(), 2);
+                SQLcon.TopOfMerchants();
                 res.AsText($"Client ID: {props["id"]}");
             });
 
             HttpServer.ListenAsync(80, CancellationToken.None, Route.OnHttpRequestAsync).Wait();
-            //Генерация ключей
-
         }
-
-        //public static async void DoCheck()
-        //{
-        //    await Task.Run(() => CheckAndWrite());
-        //}
-
-        //public static async Task CheckAndWrite()
-        //{
-        //    HttpListener listener = new HttpListener();
-        //    listener.Prefixes.Add("http://localhost:8888/");
-        //    listener.Start();
-        //    Console.WriteLine("Ожидание подключений...");
-        //    Console.ReadLine();
-
-        //    while (true)
-        //    {
-        //        HttpListenerContext context = await listener.GetContextAsync();
-        //        HttpListenerRequest request = context.Request;
-        //        HttpListenerResponse response = context.Response;
-
-        //        string responseString = "<html><head><meta charset='utf8'></head><body>Привет мир!</body></html>";
-        //        byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
-        //        response.ContentLength64 = buffer.Length;
-        //        Stream output = response.OutputStream;
-        //        output.Write(buffer, 0, buffer.Length);
-        //        output.Close();
-
-        //    }
-        //}
     }
 }
